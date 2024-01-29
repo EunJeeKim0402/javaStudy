@@ -23,6 +23,7 @@ public class MethodDemo7 {
 		System.out.println(result);
 		
 		// result값을 화면에 출력 및 기록하려는 예제. out.txt에 result값을 파일에 기록하려는것
+		// root 디렉토리에 생겼을것임
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter("out.txt"));
 			out.write(result);
@@ -31,6 +32,6 @@ public class MethodDemo7 {
 			
 		}
 	}
-
 }
+
 
