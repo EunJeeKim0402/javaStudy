@@ -1,10 +1,5 @@
 package org.opentutorials.javatutorials.object;
 
-import org.opentutorials.javatutorials.io.만드는;
-import org.opentutorials.javatutorials.io.상태와;
-import org.opentutorials.javatutorials.io.서로;
-import org.opentutorials.javatutorials.io.이루어진;
-
 public class CalculatorDemo {
 
 	public static void main(String[] args) {
