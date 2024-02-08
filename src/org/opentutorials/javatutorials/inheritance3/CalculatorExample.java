@@ -49,3 +49,6 @@ public class CalculatorExample {
 		
 	}
 }
+
+overriding
+부모가 갖고있는 메소드를 사용하나 재정의(변경)해서 사용
