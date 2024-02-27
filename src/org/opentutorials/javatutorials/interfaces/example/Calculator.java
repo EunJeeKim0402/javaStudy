@@ -14,3 +14,5 @@ class Calculator implements Calculatable {
 		return (this.first + this.second + this.third) / 2;
 	}
 }
+
+
