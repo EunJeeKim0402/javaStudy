@@ -1,5 +1,20 @@
 package org.opentutorials.javatutorials.exception;
 
+class DivideException extends Exception {
+	public int left;
+	public int right;
+	DivideException() {
+		super();
+	}
+	DivideException(String message) {
+		super(message);
+	}
+	DivideException(String message, int left, int right) {
+		super(message);
+		this.left = left;
+		this.right = right;
+	}
+}
 class Calculator {
 	int left, right;
 	public void setOprands(int left, int right) {
@@ -10,16 +25,15 @@ class Calculator {
 		this.right = right;
 	}
 	public void divide() {
-		if(right == 0) {
-			throw new ArithmeticException("두번째 인자는 0을 허용하지않음");
-		}
 		try {
-			System.out.println("계산결과는 ");
+			if(right == 0) {
+				throw new DivideException("두번째 인자는 0을 허용하지않음", this.left, this.right);
+			}
 			System.out.println(this.left/this.right);
-			System.out.println(" 입니다.");
-		} catch(Exception e) {
-			System.out.println("오류 : " + e.getMessage());
+		} catch(DivideException e) {
+			e.printStackTrace();
 		}
+		
 	}
 }
 
@@ -32,6 +46,8 @@ public class CalculatorDemo {
 			c1.divide();
 		} catch(ArithmeticException e) {
 			System.out.println(e.getMessage());
+			System.out.println(e.left());
+			System.out.println(e.right());
 		}
 	}
 
