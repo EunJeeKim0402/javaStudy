@@ -229,6 +229,149 @@ public class PrecisionTest {
     }
 }
 
+48p
+public class CastingEx1 {
+    public static void main(String[] args) {
+        double d = 100.0;
+        int i = 100;
+        int result = i + (int)d;
+
+        System.out.println("d = " + d); // 100.0
+        System.out.println("i = " + i); // 100
+        System.out.println("result = " + result); // 200
+    }
+}
+
+50p
+public class CastingEx2 {
+    public static void main(String[] args) {
+        byte b = 10;
+        int i = (int)b;
+        System.out.println("i = " + i); // 10
+        System.out.println("b = " + b); // 10
+
+        int i2 = 300;
+        byte b2 = (byte)i2;
+        System.out.println("i2 = " + i2); // 300
+        System.out.println("b2 = " + b2); // 44. 형변환 시 값손실이 일어남
+    }
+}
+
+59p
+public class OperatorEx1 {
+    public static void main(String[] args) {
+        int i = 5;
+        i++;
+        System.out.println(i); // 6
+        i = 5;
+        ++i;
+        System.out.println(i); // 6
+    }
+}
+
+60p
+public class OperatorEx2 {
+    public static void main(String[] args) {
+        int i = 5;
+        int j = 0;
+        j = i++;
+        System.out.println("j = i++; 실행 후 , i = " + i + ", j = " + j); // i=6 j=5
+
+        i = 5;
+        j = 0;
+        j = ++i;
+        System.out.println("j = ++i; 실행 후 , i = " + i + ", j = " + j); // i=6 j=6
+    }
+}
+
+61p
+public class OperatorEx3 {
+    public static void main(String[] args) {
+        int i=5, j=5;
+        System.out.println(i++); // 5
+        System.out.println(++j); // 6
+        System.out.println("i = " + i + ", j = " + j); // i=6 j=6
+    }
+}
+
+62p
+public class OperatorEx4 {
+    public static void main(String[] args) {
+        int i = -10;
+        i = +i;
+        System.out.println(i); // -10
+        
+        i = -10;
+        i = -i;
+        System.out.println(i); // 10
+    }
+}
+
+63p
+public class OperatorEx5 {
+    public static void main(String[] args) {
+        byte b = 10;
+        System.out.println("b = " + b); // 10
+        System.out.println("~b = " + ~b); // -11
+        System.out.println("~b+1 = " + (~b + 1)); // -10
+    }
+}
+
+64p
+public class OperatorEx6 {
+    public static void main(String[] args) {
+        byte b = 10;
+        //byte result = ~b; ~의 연산결과가 int라서 byte형 변수에 저장할 수 없어 에러가 남
+        byte result = (byte)~b;
+
+        System.out.println("b = " + b); // 10
+        System.out.println("~b = " + result); // -11
+    }
+}
+
+public class OperatorEx7 {
+    public static void main(String[] args) {
+        boolean power = false;
+        System.out.println(power); // false
+        power = !power;
+        System.out.println(power); // true
+        power = !power;
+        System.out.println(power); // false
+    }
+}
+
+66p
+public class OperatorEx8 {
+    public static void main(String[] args) {
+        byte a = 10;
+        byte b = 20;
+        //byte c = a + b; 컴파일 에러 발생. 명시적으로 형변환이 필요함
+        byte c = (byte)(a + b);
+        System.out.println(c); // 30
+    }
+}
+
+67p
+public class OperatorEx9 {
+    public static void main(String[] args) {
+        byte a = 10;
+        byte b = 30;
+        byte c = (byte)(a * b);
+        System.out.println(c); // 44. 형변환되면서 데이터 손실 발생
+    }
+}
+
+68p
+public class OperatorEx10 {
+    public static void main(String[] args) {
+        int a = 1000000;
+        int b = 2000000;
+        long c = a * b; // 2,000,000,000,000
+        System.out.println(c); // -1454759936. int형과 int형 연산결과는 int형.
+        // 제대로된 결과를 얻고싶다면 변수 a,b가 모두 long타입이어야됨
+    }
+}
+
 
 public class SpecialChar {
     public static void main(String[] args) {
