@@ -158,6 +158,43 @@ JVM
     대입연산자는 변수에 값 또는 수식의 연산결과를 저장하는 데 사용됨. 모든 연산자 중 가장 낮은 연산순위를 가짐
     op=는 +=, -=, /= 이런걸 얘기하는것임
 
+if문(93p)
+    if(조건식) {
+        // 조건식이 true일 때 수행될 문장
+    } else if(조건식2) {
+        // 조건식2가 true일 때 수행될 문장
+    } else {
+        // 조건식이 false일 때 수행될 문장
+    }
+
+중첩 if문
+    if(조건식) {
+        // 조건식이 true일 때 수행될 문장
+        if(조건식2) {
+            // 조건식2가 true일 때 수행될 문장
+        } else {
+            // 조건식1이 true고 조건식 2가 false일 때 수행될 문장
+        }
+    } else {
+        // 조건식이 false일 때 수행될 문장
+    }
+
+switch문(98p)
+    조건의 경우의 수가 많을때는 if문보다 나을 수 있음.
+    연산결과가 int형 범위의 정수값이어야 한다(byte, short, char 등도 가능). 변수는 허락되지 않음.
+    만약 break;가 없으면 switch문의 블럭 끝까지 모든 문장을 수행하게 됨.
+    switch(조건식) {
+        case 값1 :
+            // 조건식 결과가 값1과 같을 때 수행될 문장들
+            break;
+        case 값2 :
+            // 조건식 결과가 값2와 같을 때 수행될 문장들
+            break;
+        case 값1 :
+            // 조건식 결과가 일치하는 case문이 없을 경우 수행될 문장들
+    }
+
+
 
 
 * 참고
@@ -165,6 +202,7 @@ JVM
     c + 1은 c의 값을 변화시키지 않고 단순히 계산 결과를 반환
     c++는 c의 값을 변화시키고, 그 변화된 값은 이후 연산에서 유지됨
 
+--------------------------------------------------------------------------------------------------------------------
 * 예시 문제풀이
 38p
 public class CharToCode {
@@ -372,6 +410,138 @@ public class OperatorEx10 {
     }
 }
 
+public class OperatorEx11 {
+    public static void main(String[] args) {
+        long a = 1000000 * 1000000;
+        long b = 1000000 * 1000000L; // long형 리터럴
+        System.out.println(a); // -727379968. 연산결과가 int라 값손실이 발생함
+        System.out.println(b); // 1000000000000
+    }
+}
+
+public class OperatorEx12 {
+    public static void main(String[] args) {
+        int a = 1000000 * 1000000 / 1000000;
+        int b = 1000000 / 1000000 * 1000000;
+        System.out.println(a); // -727. 먼저 곱하면 int의 범위를 넘어섬
+        System.out.println(b); // 1000000
+    }
+}
+
+69p
+public class OperatorEx13 {
+    public static void main(String[] args) {
+        char c1 = 'a'; // a의 코드값인 97이 저장됨
+        char c2 = c1;
+        char c3 = ' ';
+
+        int i = c1 + 1; // 97 + 1
+
+        c3 = (char)(c1 + 1);
+        c2++;
+        c2++;
+
+        System.out.println("i = " + i);   // 98
+        System.out.println("c2 = " + c2); // c
+        System.out.println("c3 = " + c3); // b
+    }
+}
+
+70p
+public class OperatorEx14 {
+    public static void main(String[] args) {
+        char c1 = 'a';
+
+        //char c2 = c1 + 1; 컴파일 에러. char로 형변환하라고함
+        char c2 = 'a' + 1; // 윗줄과는 달리 에러가 발생하지 않음
+
+        System.out.println(c2); // b
+    }
+}
+
+public class OperatorEx17 {
+    public static void main(String[] args) {
+        float pi = 3.141592f;
+        float shortPi = (int)(pi * 1000) / 1000f;
+
+        System.out.println(shortPi); // 3.141. int형 간의 나눗셈 int/int를 수행하면 결과도 int임. 나눗셈 결과는 버림
+    }
+}
+
+public class OperatorEx21 {
+    public static void main(String[] args) {
+        System.out.println(-10 % 8);  // -2
+        System.out.println(10 % -8);  // 2
+        System.out.println(-10 % -8); // -2
+    }
+}
+
+80p
+public class OperatorEx23 {
+    public static void main(String[] args) {
+       if(10 == 10.0f) {
+           System.out.println("10과 10.0f은 같다."); // true
+       }
+
+       if('0' != 0) {
+           System.out.println("'0'과 0은 같지 않다."); // true
+       }
+
+        if('A' == 65) {
+            System.out.println("'A'는 65와 같다"); // true
+        }
+
+        int num = 5;
+        if(num > 0 && num < 9) {
+            System.out.println("5는 0보다 크고, 9보다는 작다"); // true
+        }
+    }
+}
+
+public class OperatorEx24 {
+    public static void main(String[] args) {
+       float f = 0.1f;
+       double d = 0.1;
+       double d2 = (double)f;
+
+        System.out.println("10.0 == 10.0f ? " + (10.0 == 10.0f)); // true
+        System.out.println("0.1 == 0.1f ? " + (0.1 == 0.1f));     // false...
+        // 정수형과 달리 실수형인 float과 double의 값은 근사값으로 저장되기 때문임
+        System.out.println("f = " + f); // 0.1
+        System.out.println("d = " + d); // 0.1
+        System.out.println("d2 = " + d2); // 0.10000000149011612
+        System.out.println("d == f ? " + (d == f)); // false
+        System.out.println("d == d2 ? " + (d == d2)); // false
+        System.out.println("d2 == f ? " + (d2 == f)); // true
+    }
+}
+
+82p
+public class OperatorEx25 {
+    public static void main(String[] args) {
+       char x = 'j';
+
+        if((x>='a' && x<='z') || (x>='A' && x<='Z')) {
+            System.out.println("유효한 문자입니다."); // true
+        } else {
+            System.out.println("유효하지 않은 문자입니다.");
+        }
+    }
+}
+
+85p
+public class OperatorEx27 {
+    public static void main(String[] args) {
+        int x = 10;
+        int y = -10;
+
+        int absX = (x >= 0) ? x : -x;
+        int absY = (y >= 0) ? y : -y;
+
+        System.out.println("x = 10일때, x의 절대값은 " + absX);  // 10
+        System.out.println("y = -10일때, y의 절대값은 " + absY); // 10
+    }
+}
 
 public class SpecialChar {
     public static void main(String[] args) {
@@ -384,7 +554,6 @@ public class SpecialChar {
         System.out.println(root); // c:\
     }
 }
-
 
 87p
 public class Main {
@@ -405,3 +574,58 @@ public class Main {
         System.out.println(c++); // B
     }
 }
+
+101p switch문
+public class FlowEx7 {
+    public static void main(String[] args) {
+        char ch = (char)(Math.random() * 4 + 'A'); // A, B, C, D중 하나 얻음
+        int score = 0;
+
+        switch(ch) {
+            case 'A' :
+                score = 90;
+                break;
+            case 'B' :
+                score = 80;
+                break;
+            case 'C' :
+                score = 70;
+                break;
+            case 'D' :
+                score = 60;
+                break;
+        }
+
+        System.out.println("당신의 점수는 " + score + "점 입니다.");
+    }
+}
+
+103p switch문
+public class FlowEx9 {
+    public static void main(String[] args) {
+        // break;가 없을 때 구문 전체를 도는 switch문의 특성을 이용한 코드
+        int score = (int)(Math.random() * 10) + 1;
+        String msg = "";
+
+        score *= 100;
+        msg = "당신의 점수는 " + score + "이고 상품은 ";
+
+        switch(score) {
+            case 1000 :
+                msg += "자전거, ";
+            case 900 :
+                msg += "TV, ";
+            case 800 :
+                msg += "노트북, ";
+            case 700 :
+                msg += "공책, ";
+            default:
+                msg += "볼펜";
+        }
+
+        System.out.println(msg + "입니다.");
+    }
+}
+
+
+
