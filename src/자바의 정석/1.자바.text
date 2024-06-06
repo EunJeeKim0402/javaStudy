@@ -183,6 +183,7 @@ switch문(98p)
     조건의 경우의 수가 많을때는 if문보다 나을 수 있음.
     연산결과가 int형 범위의 정수값이어야 한다(byte, short, char 등도 가능). 변수는 허락되지 않음.
     만약 break;가 없으면 switch문의 블럭 끝까지 모든 문장을 수행하게 됨.
+    조건식 안에 (score/10) 이런식으로 계산식을 사용할 수도 있음.
     switch(조건식) {
         case 값1 :
             // 조건식 결과가 값1과 같을 때 수행될 문장들
@@ -194,6 +195,34 @@ switch문(98p)
             // 조건식 결과가 일치하는 case문이 없을 경우 수행될 문장들
     }
 
+반복문 - for, while, do-while(106p)
+    while문과 do-while문은 기본적인 구조는 같으나 do-while문은 최소한 한번은 수행을 보장.
+    Loop1 : for~와 같이 for문에 이름을 붙일 수도 있음(break Loop1 이런식으로 사용).
+    for(초기화; 조건식; 증감식) {
+        // 조건식이 true일 때 수행될 문장
+    }
+
+    while(조건식) {
+        // 조건식이 true일 때 수행될 문장
+    }
+
+    do {
+        // 조건식이 true일 때 수행될 문장
+    } while(조건식);
+
+break문(116p)
+    가장 가까운 switch문 or 반복문을 벗어나는 데 사용됨.
+
+continue문
+    반복이 진행되는 동안 continue문을 만나면 반복문의 끝으로 이동하여 다음 반복으로 넘어감.
+    break문과는 달리 반복문 전체를 벗어나지 않고 다음 반복을 수행.
+
+배열?(127p)
+    같은 타입의 여러 변수를 하나의 묶음으로 다루는 것. for문과 같이 사용하면 효율이 좋음
+    타입[] 변수이름;
+    타입 변수이름[]; // 아래 위 둘 다 사용해서 선언 가능
+    int[] score; // 배열을 선언 -> 생성된 배열을 다루는 데 사용될 참조변수 선언
+    score = new int[5]; // 배열을 생성 -> 값을 저장할 수 있는 공간 생성(예시는 기본값 0으로 다 초기화된 상태)
 
 
 
@@ -626,6 +655,22 @@ public class FlowEx9 {
         System.out.println(msg + "입니다.");
     }
 }
+
+111p for문
+public class FlowEx19 {
+    public static void main(String[] args) {
+        long startTime = System.currentTimeMillis();
+        for(int i=0; i<1000000000; i++) {
+            ;
+        }
+        long endTime = System.currentTimeMillis();
+
+        System.out.println("시작시작 : " + startTime);
+        System.out.println("시작시작 : " + endTime);
+        System.out.println("소요시간 : " + (endTime - startTime)); // 컴퓨터 수행능력마다 다름
+    }
+}
+
 
 
 
