@@ -1,0 +1,653 @@
+* 예시 문제풀이
+38p
+public class CharToCode {
+    public static void main(String[] args) {
+        char ch = 'A'; // '\u0041';로 바꿔써도 같음
+        int code = (int)ch; // ch의 값을 int형으로 변환해서 저장
+
+        System.out.println(ch); // 'A'
+        System.out.println(code); // 65
+    }
+}
+
+41p
+public class StringTest {
+    public static void main(String[] args) {
+        String a = 7 + " ";
+        String b = " " + 7;
+        String c = 7 + "";
+        String d = "" + 7;
+        String e = "" + "";
+        String f = 7 + 7 + "";
+        String g = "" + 7 + 7 ;
+
+        System.out.println(a); // 7
+        System.out.println(b); //  7
+        System.out.println(c); // 7
+        System.out.println(d); // 7
+        System.out.println(e); //
+        System.out.println(f); // 14. int 연산 먼저 하고 String으로 전환되는듯
+        System.out.println(g); // 77
+    }
+}
+
+43p
+public class ByteOverFlow {
+    public static void main(String[] args) {
+        byte b = 0;
+        int i = 0;
+
+        for(int x=0; x<=270; x++) {
+            System.out.println(b++);
+            System.out.println('\t'); // tab출력
+            System.out.println(i++); // byte 최대값인 127을 넙어 이후에는 -128... 다시 0부터 시작
+        }
+    }
+}
+
+46p
+public class PrecisionTest {
+    public static void main(String[] args) {
+        float f = 1.2345678901234567890f;
+        double d = 1.2345678901234567890;
+        float f2 = 0.100000001f;
+        double d2 = 0.100000001;
+        double d3 = 0.1000000000000001;
+
+        System.out.println(f); // 1.2345679 끝자리에서 반올림됨
+        System.out.println(d); // 1.2345678901234567
+        System.out.println(f2); // 0.1 float가 표현할 수 있는 가수의 자리수(정밀도)를 넘어섰기때문
+        System.out.println(d2); // 0.100000001
+        System.out.println(d3); // 0.1000000000000001
+    }
+}
+
+48p
+public class CastingEx1 {
+    public static void main(String[] args) {
+        double d = 100.0;
+        int i = 100;
+        int result = i + (int)d;
+
+        System.out.println("d = " + d); // 100.0
+        System.out.println("i = " + i); // 100
+        System.out.println("result = " + result); // 200
+    }
+}
+
+50p
+public class CastingEx2 {
+    public static void main(String[] args) {
+        byte b = 10;
+        int i = (int)b;
+        System.out.println("i = " + i); // 10
+        System.out.println("b = " + b); // 10
+
+        int i2 = 300;
+        byte b2 = (byte)i2;
+        System.out.println("i2 = " + i2); // 300
+        System.out.println("b2 = " + b2); // 44. 형변환 시 값손실이 일어남
+    }
+}
+
+59p
+public class OperatorEx1 {
+    public static void main(String[] args) {
+        int i = 5;
+        i++;
+        System.out.println(i); // 6
+        i = 5;
+        ++i;
+        System.out.println(i); // 6
+    }
+}
+
+60p
+public class OperatorEx2 {
+    public static void main(String[] args) {
+        int i = 5;
+        int j = 0;
+        j = i++;
+        System.out.println("j = i++; 실행 후 , i = " + i + ", j = " + j); // i=6 j=5
+
+        i = 5;
+        j = 0;
+        j = ++i;
+        System.out.println("j = ++i; 실행 후 , i = " + i + ", j = " + j); // i=6 j=6
+    }
+}
+
+61p
+public class OperatorEx3 {
+    public static void main(String[] args) {
+        int i=5, j=5;
+        System.out.println(i++); // 5
+        System.out.println(++j); // 6
+        System.out.println("i = " + i + ", j = " + j); // i=6 j=6
+    }
+}
+
+62p
+public class OperatorEx4 {
+    public static void main(String[] args) {
+        int i = -10;
+        i = +i;
+        System.out.println(i); // -10
+        
+        i = -10;
+        i = -i;
+        System.out.println(i); // 10
+    }
+}
+
+63p
+public class OperatorEx5 {
+    public static void main(String[] args) {
+        byte b = 10;
+        System.out.println("b = " + b); // 10
+        System.out.println("~b = " + ~b); // -11
+        System.out.println("~b+1 = " + (~b + 1)); // -10
+    }
+}
+
+64p
+public class OperatorEx6 {
+    public static void main(String[] args) {
+        byte b = 10;
+        //byte result = ~b; ~의 연산결과가 int라서 byte형 변수에 저장할 수 없어 에러가 남
+        byte result = (byte)~b;
+
+        System.out.println("b = " + b); // 10
+        System.out.println("~b = " + result); // -11
+    }
+}
+
+public class OperatorEx7 {
+    public static void main(String[] args) {
+        boolean power = false;
+        System.out.println(power); // false
+        power = !power;
+        System.out.println(power); // true
+        power = !power;
+        System.out.println(power); // false
+    }
+}
+
+66p
+public class OperatorEx8 {
+    public static void main(String[] args) {
+        byte a = 10;
+        byte b = 20;
+        //byte c = a + b; 컴파일 에러 발생. 명시적으로 형변환이 필요함
+        byte c = (byte)(a + b);
+        System.out.println(c); // 30
+    }
+}
+
+67p
+public class OperatorEx9 {
+    public static void main(String[] args) {
+        byte a = 10;
+        byte b = 30;
+        byte c = (byte)(a * b);
+        System.out.println(c); // 44. 형변환되면서 데이터 손실 발생
+    }
+}
+
+68p
+public class OperatorEx10 {
+    public static void main(String[] args) {
+        int a = 1000000;
+        int b = 2000000;
+        long c = a * b; // 2,000,000,000,000
+        System.out.println(c); // -1454759936. int형과 int형 연산결과는 int형.
+        // 제대로된 결과를 얻고싶다면 변수 a,b가 모두 long타입이어야됨
+    }
+}
+
+public class OperatorEx11 {
+    public static void main(String[] args) {
+        long a = 1000000 * 1000000;
+        long b = 1000000 * 1000000L; // long형 리터럴
+        System.out.println(a); // -727379968. 연산결과가 int라 값손실이 발생함
+        System.out.println(b); // 1000000000000
+    }
+}
+
+public class OperatorEx12 {
+    public static void main(String[] args) {
+        int a = 1000000 * 1000000 / 1000000;
+        int b = 1000000 / 1000000 * 1000000;
+        System.out.println(a); // -727. 먼저 곱하면 int의 범위를 넘어섬
+        System.out.println(b); // 1000000
+    }
+}
+
+69p
+public class OperatorEx13 {
+    public static void main(String[] args) {
+        char c1 = 'a'; // a의 코드값인 97이 저장됨
+        char c2 = c1;
+        char c3 = ' ';
+
+        int i = c1 + 1; // 97 + 1
+
+        c3 = (char)(c1 + 1);
+        c2++;
+        c2++;
+
+        System.out.println("i = " + i);   // 98
+        System.out.println("c2 = " + c2); // c
+        System.out.println("c3 = " + c3); // b
+    }
+}
+
+70p
+public class OperatorEx14 {
+    public static void main(String[] args) {
+        char c1 = 'a';
+
+        //char c2 = c1 + 1; 컴파일 에러. char로 형변환하라고함
+        char c2 = 'a' + 1; // 윗줄과는 달리 에러가 발생하지 않음
+
+        System.out.println(c2); // b
+    }
+}
+
+public class OperatorEx17 {
+    public static void main(String[] args) {
+        float pi = 3.141592f;
+        float shortPi = (int)(pi * 1000) / 1000f;
+
+        System.out.println(shortPi); // 3.141. int형 간의 나눗셈 int/int를 수행하면 결과도 int임. 나눗셈 결과는 버림
+    }
+}
+
+public class OperatorEx21 {
+    public static void main(String[] args) {
+        System.out.println(-10 % 8);  // -2
+        System.out.println(10 % -8);  // 2
+        System.out.println(-10 % -8); // -2
+    }
+}
+
+80p
+public class OperatorEx23 {
+    public static void main(String[] args) {
+       if(10 == 10.0f) {
+           System.out.println("10과 10.0f은 같다."); // true
+       }
+
+       if('0' != 0) {
+           System.out.println("'0'과 0은 같지 않다."); // true
+       }
+
+        if('A' == 65) {
+            System.out.println("'A'는 65와 같다"); // true
+        }
+
+        int num = 5;
+        if(num > 0 && num < 9) {
+            System.out.println("5는 0보다 크고, 9보다는 작다"); // true
+        }
+    }
+}
+
+public class OperatorEx24 {
+    public static void main(String[] args) {
+       float f = 0.1f;
+       double d = 0.1;
+       double d2 = (double)f;
+
+        System.out.println("10.0 == 10.0f ? " + (10.0 == 10.0f)); // true
+        System.out.println("0.1 == 0.1f ? " + (0.1 == 0.1f));     // false...
+        // 정수형과 달리 실수형인 float과 double의 값은 근사값으로 저장되기 때문임
+        System.out.println("f = " + f); // 0.1
+        System.out.println("d = " + d); // 0.1
+        System.out.println("d2 = " + d2); // 0.10000000149011612
+        System.out.println("d == f ? " + (d == f)); // false
+        System.out.println("d == d2 ? " + (d == d2)); // false
+        System.out.println("d2 == f ? " + (d2 == f)); // true
+    }
+}
+
+82p
+public class OperatorEx25 {
+    public static void main(String[] args) {
+       char x = 'j';
+
+        if((x>='a' && x<='z') || (x>='A' && x<='Z')) {
+            System.out.println("유효한 문자입니다."); // true
+        } else {
+            System.out.println("유효하지 않은 문자입니다.");
+        }
+    }
+}
+
+85p
+public class OperatorEx27 {
+    public static void main(String[] args) {
+        int x = 10;
+        int y = -10;
+
+        int absX = (x >= 0) ? x : -x;
+        int absY = (y >= 0) ? y : -y;
+
+        System.out.println("x = 10일때, x의 절대값은 " + absX);  // 10
+        System.out.println("y = -10일때, y의 절대값은 " + absY); // 10
+    }
+}
+
+public class SpecialChar {
+    public static void main(String[] args) {
+        char single = '\'';
+        String dblQuote = "\"Hello\"";
+        String root = "c:\\";
+
+        System.out.println(single); // '
+        System.out.println(dblQuote); // "Hello"
+        System.out.println(root); // c:\
+    }
+}
+
+87p
+public class Main {
+    public static void main(String[] args) {
+        int x = 2;
+        int y = 5;
+        char c = 'A'; // 아스키코드 65
+
+        System.out.println(1 + x << 33); // 6. <<는 비트연산자로 비트 값을 주어진 숫자만큼 이동시킴
+        System.out.println(y>=5 || x<0 && x>2); // true
+        System.out.println(y+=10 - x++); // 13
+        System.out.println(x+=2); // 5... 이전 줄에서 x++했기 때문임
+        System.out.println( !('A'<=c && c<='Z') ); // false
+        System.out.println('C'-c); // 2
+        System.out.println('5'-'0'); // 5. 아스키코드로 각자 '5'는 53, '0'은 48이기 때문
+        System.out.println(c+1); // 66
+        System.out.println(++c); // B
+        System.out.println(c++); // B
+    }
+}
+
+101p switch문
+public class FlowEx7 {
+    public static void main(String[] args) {
+        char ch = (char)(Math.random() * 4 + 'A'); // A, B, C, D중 하나 얻음
+        int score = 0;
+
+        switch(ch) {
+            case 'A' :
+                score = 90;
+                break;
+            case 'B' :
+                score = 80;
+                break;
+            case 'C' :
+                score = 70;
+                break;
+            case 'D' :
+                score = 60;
+                break;
+        }
+
+        System.out.println("당신의 점수는 " + score + "점 입니다.");
+    }
+}
+
+103p switch문
+public class FlowEx9 {
+    public static void main(String[] args) {
+        // break;가 없을 때 구문 전체를 도는 switch문의 특성을 이용한 코드
+        int score = (int)(Math.random() * 10) + 1;
+        String msg = "";
+
+        score *= 100;
+        msg = "당신의 점수는 " + score + "이고 상품은 ";
+
+        switch(score) {
+            case 1000 :
+                msg += "자전거, ";
+            case 900 :
+                msg += "TV, ";
+            case 800 :
+                msg += "노트북, ";
+            case 700 :
+                msg += "공책, ";
+            default:
+                msg += "볼펜";
+        }
+
+        System.out.println(msg + "입니다.");
+    }
+}
+
+111p for문
+public class FlowEx19 {
+    public static void main(String[] args) {
+        long startTime = System.currentTimeMillis();
+        for(int i=0; i<1000000000; i++) {
+            ;
+        }
+        long endTime = System.currentTimeMillis();
+
+        System.out.println("시작시작 : " + startTime);
+        System.out.println("시작시작 : " + endTime);
+        System.out.println("소요시간 : " + (endTime - startTime)); // 컴퓨터 수행능력마다 다름
+    }
+}
+
+134p Array
+public class ArrayEx4 { // 로또문제
+    public static void main(String[] args) {
+        int[] ball = new int[45];
+
+        for(int i=0; i<ball.length; i++) {
+            ball[i] = i+1; // ball[0]에 1 저장
+        }
+
+        int temp = 0;
+        int j = 0;
+
+        for(int i=0; i<100; i++) {
+            j = (int)(Math.random() * 45); // 0~44 범위에서 랜덤값
+            temp = ball[0];
+            ball[0] = ball[j]; // ball[0]와 ball[j]값을 바꿈
+            ball[j] = temp;
+        }
+
+        for(int i=0; i<6; i++) {
+            System.out.print(ball[i] + " ");
+        }
+    }
+}
+
+135p Array
+public class ArrayEx5 {
+    public static void main(String[] args) {
+        int[] number = new int[10];
+
+        for(int i=0; i<number.length; i++) {
+            System.out.print(number[i] = (int)(Math.random() * 10));
+        }
+        System.out.println();
+
+        for(int i=0; i<number.length; i++) {
+            boolean changed = false; // 자리바꿈 발생 체크
+
+            for(int j=0; j<number.length-1-i; j++) {
+                if(number[j] > number[j+1]) { // 옆의 값이 더 큰지 확인해서 서로 바꿈
+                    int temp = number[j];
+                    number[j] = number[j+1];
+                    number[j+1] = temp;
+                    changed = true;
+                }
+
+                if(!changed) break; // 자리바꿈이 없으면 반복문 벗어남
+
+                for(int k=0;k<number.length; k++) {
+                    System.out.print(number[k]);
+                }
+                System.out.println();
+            }
+        }
+    }
+}
+
+136p Array
+public class ArrayEx6 {
+    public static void main(String[] args) {
+        int[] number = new int[10];
+        int[] counter = new int[10];
+
+        for(int i=0; i<number.length; i++) {
+            System.out.print(number[i] = (int)(Math.random() * 10));
+        }
+        System.out.println();
+
+        for(int i=0; i<number.length; i++) {
+            counter[number[i]]++;
+        }
+
+        for(int i=0; i<number.length; i++) {
+            System.out.println(i + "의 갯수 : " + counter[i]);
+        }
+    }
+}
+
+public class ArrayEx10 {
+    public static void main(String[] args) {
+        int[][] score = {{100,100,100},{20,20,20},{30,30,30},{40,40,40},{50,50,50}};
+        int koreanTotal = 0;
+        int englishTotal = 0;
+        int mathTotal = 0;
+
+        System.out.println("번호 국어 영어 수학 총점 평균");
+        System.out.println("============================");
+
+        for(int i=0; i<score.length; i++) {
+            int sum = 0;
+            koreanTotal += score[i][0];
+            englishTotal += score[i][1];
+            mathTotal += score[i][2];
+            System.out.print(" " + (i+1) + " ");
+            for(int j=0; j<score[i].length; j++) {
+                sum += score[i][j];
+                System.out.print(score[i][j] + " ");
+            }
+            System.out.println(sum + " " + sum/(float)score[i].length);
+        }
+        System.out.println("============================");
+        System.out.println("총점 : " + koreanTotal + " " + englishTotal + " " + mathTotal);
+    }
+}
+
+148p
+import javax.swing.*; // JOptionPane 다운
+public class ArrayEx16 {
+    public static void main(String[] args) {
+        int answer = (int)(Math.random() * 100) + 1;
+        int input = 0;      // 사용자 입력 저장
+        String temp = "";   // 사용자 입력 저장할 임시공간
+        int count = 0;      // 시도횟수 카운트
+
+        do {
+            count++;
+            temp = JOptionPane.showInputDialog(("1~100 사이의 숫자를 입력하세요." + "끝내려면 -1을 입력하세요."));
+            if(temp==null || temp.equals("-1")) break; // 취소버튼 누르기 or -1 입력하면 do-while 벗어남
+            System.out.println("입력값 : " + temp);
+            input = Integer.parseInt(temp); // 사용자입력은 문자열이라 형변환해줘야됨
+
+            if(answer > input) {
+                System.out.println("더 큰 수를 입력하세요.");
+            } else if(answer < input) {
+                System.out.println("더 작은 수를 입력하세요.");
+            } else {
+                System.out.println("정답입니다!");
+                System.out.println("시도횟수는 " + count + "번 입니다.");
+                break;
+            }
+        } while(true); // 무한반복
+    }
+}
+
+169p
+class TV {
+    String color; // TV의 속성들
+    boolean power;
+    int channel;
+
+    void power() { power = !power; } // TV의 기능들(메소드)
+    void channelUp() { ++channel; }
+    void channelDown() { --channel; }
+}
+public class TvTest2 {
+    public static void main(String[] args) {
+        TV t1 = new TV();
+        TV t2 = new TV();
+        System.out.println("t1의 channel 값은 " + t1.channel + "입니다."); // 0
+        System.out.println("t2의 channel 값은 " + t2.channel + "입니다."); // 0
+
+        // 근데 여기서 t2 = t1; 로 바꾸면 t2도 7로 출력됨. t1이 저장하고있는 주소값을 t2에 저장했기때문
+        t1.channel = 7;
+        System.out.println("t1의 channel 값을 7로 변경했습니다.");
+        System.out.println("t1의 channel 값은 " + t1.channel + "입니다."); // 7
+        System.out.println("t2의 channel 값은 " + t2.channel + "입니다."); // 0
+    }
+}
+
+183p
+public class ReturnTest {
+    public static void main(String[] args) {
+        ReturnTest r = new ReturnTest();
+
+        int result = r.add(3, 5);
+        System.out.println(result);
+
+        int[] result2 = {0};    // 배열 생성 후 result2[0]의 값을 0으로 초기화
+        r.add(3, 5, result2); // 배열을 add메소드의 매개변수로 전달
+        System.out.println(result2[0]);
+    }
+    int add(int a, int b) {
+        return a + b;
+    }
+    void add(int a, int b, int[] result) {
+        result[0] = a + b; // 매개변수로 넘겨받은 배열에 연산결과 저장
+    }
+}
+
+191p 기본형 매개변수 참조형 매개변수
+class Data { int x; }
+public class ParameterTest {
+    public static void main(String[] args) {
+        Data d = new Data();
+        d.x = 10;
+        System.out.println("main() : x = " + d.x);
+
+        //change(d.x);
+        change(d);
+        System.out.println("After change(d)");
+        System.out.println("main() : x = " + d.x);
+    }
+    //static void change(int x) { // 기본형 매개변수 - x = 10
+    static void change(Data d) { // 참조형 매개변수 - x = 1000
+        d.x = 1000;
+        System.out.println("change() : x = " + d.x);
+    }
+}
+
+193p 재귀호출
+public class FactorialTest {
+    public static void main(String[] args) {
+        System.out.println(factorial(4));
+    }
+    static long factorial(int n) {
+        long result = 0;
+        if(n == 1) {
+            result = 1;
+        } else {
+            result = n * factorial(n-1); // 재귀호출
+        }
+        return result;
+    }
+}
