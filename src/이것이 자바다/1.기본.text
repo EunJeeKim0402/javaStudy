@@ -726,3 +726,33 @@ private메소드(361p)
 
 리소스 자동 닫기(475p)
     리소스란 데이터를 제공하는 객체. 사용하기 위해 열어야하며, 끝난 다음에는 닫아야함. 사용 중 예외가 발생해도 안전하게 닫아야됨.
+
+예외 떠넘기기(479p)
+    메소드 내부에서 예외가 발생할때는 try-catch가 기본이지만, 메소드를 호출한 곳으로 넘길때는 throws를 사용하면 됨.
+    public void method1() {
+        try {
+            method2();
+        } catch(ClassNotFoundException e) { // 여기서 예외처리 하게됨
+            System.out.println("예외처리 : " + e.getMessage());
+        }
+    }
+    public void method2() trhows ClassNotFoundException { // 호출한곳으로 예외 떠넘기기
+        Class.forName("java.lang.String2");
+    }
+    나열해야되는 예외가 많은 경우에는 throws Exception이나 throws Throwable만으로도 모든 예외를 떠넘길 수 있음
+
+사용자 정의 예외(481p)
+    ex.잔고보다 더 많은 출금 요청이 들어온 경우 등 표준 라이브러리에 존재하지 않는 예외를 정의해서 사용할 수 있음.
+    public class InsufficientException extends Exception { // 일반 예외로 선언(실행예외는 RuntimeException)
+        public InsufficientException() {
+            // 두개의 생성자 선언
+        }
+        public InsufficientException(String message) {
+            super(message);
+        }
+    }
+
+API 도큐먼트(494p)
+    자바 표준 모듈에서 제공하는 라이브러리는 방대해서 쉽게 찾아서 사용할 수 있도록 도와주는 API도큐먼트가 있음.
+    https://docs.oracle.com/en/java/javase/index.html
+    클래스 정의를 보려면 선언부를 보면 됨. 상속관계도 볼 수 있고 구성 멤버도 볼 수 있음(summary)
