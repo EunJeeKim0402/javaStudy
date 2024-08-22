@@ -12,11 +12,13 @@ public class Student {
     public int getNo() { return no; }
     public String getName() { return name; }
 
+    /*
     @Override
     public int hashCode() { // Object메소드의 hashCode()메소드 재정의
         int hashCode = no + name.hashCode();
         return hashCode;
     }
+     */
 
     @Override
     public boolean equals(Object obj) {
